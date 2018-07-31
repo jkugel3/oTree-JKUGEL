@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Decision Rules, Sampling, and Confidence:
+{% endblock %}
+
+{% block content %}
+
+    <p>It is important that you understand the decision rule for rejecting a box of baked goods. The results of your
+        sampling will cause you to reject automatically for two reasons:</p>
+
+    <p>(1) If the bill of lading reports a quantity of croissants that is NOT within +/- 10 croissants of the sample’s
+    estimated count, you will automatically reject the daily shipment.</p>
+
+    <p>(2) If the bill of lading’s reported quantity equals 100 or 0 croissants, you will also automatically reject the
+    box. In fact, because the odds of a miscount are so high when a bill of lading says only one type of item is
+    present in the box, you will not be required to make a sampling decision when a reported count of 100 or 0
+    croissants is given. Instead, you will automatically reject the box and incur no sampling costs.</p>
+
+    <p>It is also important that you understand the decision rule for accepting a box of baked goods. Your sampling
+    will cause the box to be automatically accepted for one reason:</p>
+
+    <p>(1) If the bill of lading reports a quantity of croissants that is less than or equal to the sample’s estimated
+    count of croissants +/- 10 croissants, you will automatically accept the daily shipment.</p>
+
+    <p>In this study, the greater number of items you sample, the higher sampling cost you will pay. However, the greater
+    number of items you sample, the more accurate will be your sampling estimate of the true distribution of the box,
+    thus reducing the number of incorrect decisions.</p>
+
+    <p>We will pause now to answer any questions you may have. Following the questions, we will briefly summarize the
+    procedures and instructions you have just reviewed.</p>
+
+
+
+
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

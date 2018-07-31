@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Examples of Net Earnings Calculation:
+{% endblock %}
+
+{% block content %}
+
+    <p><strong><i>(The following examples illustrate the net earnings computation. Because the examples merely illustrate the earnings
+        computation, you should not view the hypothetical actions as indicative of the best thing for you to do.)</i></strong></p>
+
+    <div>Example 4:</div>
+
+    <p>Suppose the true count is 59 croissants, the bill of lading reports 79 croissants, and you choose to sample
+    15 items, as in example 2. However, in this case, the sample contains 11 croissants, which means the sample's
+    estimated mix of the box is 73 croissants and 27 muffins. In this case, because the reported count of 79 croissants
+    is within the range of 63-83 croissants (which is the sample's estimate of 73 croissants plus/minus 10 croissants),
+    the shipment is automatically accepted. Because your sampling results lead you to accept an incorrectly filled box
+        (a wrong agreement), your earnings computation will be:</p>
+
+    <p></p>
+    {% if Constants.treatments == FX %}
+    50 (revenue) - 15 (sampling costs) - 100 (penalty for wrong agreement) = a -65 dollar loss
+    {% elif Constants.treatments == SM %}
+    50 (revenue) - 15 (sampling costs) - P (penalty for wrong agreement),
+    where P is a random number of equal probability between 0 and 200.
+    In effect, your earnings computation for this round could be as high
+    as 35 dollars (50-15-0) and as low as a -165 dollar loss (50-15-200).
+    {% else %}
+    50 (revenue) - 15 (sampling costs) - P (penalty for wrong agreement), where P is either 5 dollars or 4750
+    dollars, with the probability of a 5 dollar penalty being 98 percent, and the probability of a 4750
+    penalty being 2 percent. In effect, your earnings computation for this round could be as high as 30
+    dollars (50-15-5) and as low as a -4715 dollar loss (50-15-4750).
+    {% endif  %}
+    <p></p>
+
+    <p>We will pause now to answer any questions you may have. Following the questions, we will further
+    explain the rules which determine whether you will automatically agree or disagree with the bill of lading.</p>
+
+
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Question {{ player.round_number }}
+{% endblock %}
+
+{% block content %}
+
+    <img src="{% static transcribe %}"/>
+
+    {% formfield player.submitted_answer label=player.question %}
+
+    {% next_button %}
+
+{% endblock %}
+
+
+

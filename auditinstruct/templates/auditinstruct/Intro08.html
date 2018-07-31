@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Earnings Computation:
+{% endblock %}
+
+{% block content %}
+
+    <p>Your goal is to maximize your balance of experimental dollars. In this section, we will explain the formulas
+    used to calculate your balance of dollars throughout the session. After this explanation, you will have time to
+    study the formulas and review some hypothetical examples which illustrate these formulas.<P>
+
+    <p>All participants start the experiment with 0 experimental dollars. Your overall dollars for the study will
+    increase or decrease each round based on the formulas for “net round earnings” shown below. For each round,
+    you will receive 50 experimental dollars for each day's sampling. From this 50 dollars will be deducted your
+    sampling costs and any penalties you incur for incorrect judgments.</p>
+
+    <p>When you make a correct agreement or disagreement, Net Round Earnings = 50 - sampling costs. [As a reminder,
+    a correct agreement occurs when the sampling results lead you to accept a shipment that does match the bill of
+    lading. A correct disagreement occurs when the sampling results lead you to reject a shipment that does NOT match
+    the bill of lading.] Sampling costs are deducted based on the number of items you sample. A sample of 5 items costs
+    5 dollars, a sample of 10 items costs 10 dollars, and so on.</p>
+
+    <div>When your sample result causes you to make an incorrect agreement or disagreemen:
+        <p>Net Round Earnings = 50 - sampling costs - a penalty.<p>
+
+            <div>
+    Failure to make the right decision of whether to accept or reject a shipment carries a penalty as follows on
+    the next screen:<div>
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

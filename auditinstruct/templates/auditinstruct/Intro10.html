@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Payout Calculation:
+{% endblock %}
+
+{% block content %}
+
+    <p>At the end of the last round, you will be paid $10 for finishing plus extra cash depending on your cumulative
+    earnings. The amount of extra cash you will receive (above the $10 minimum) will be based on your <strong>RELATIVE</strong>
+    performance across all participants in your session. The average payment to participants will be $15.50 total,
+    with the best performers receiving as much as $20 total, and the worst performers receiving a minimum of $11.</p>
+
+    <p>Again, your payment will depend on your performance <strong>RELATIVE</strong> to other participants in this session. During
+    the course of the study, you may experience an overall net loss in experimental dollars. A negative experiment
+    balance does <strong>NOT</strong> mean you are losing “real” money.  Because your extra cash payment depends on your performance
+    relative to all other participants, you will not be paid until all participants in this session complete the study.</p>
+
+    <p>To help you maintain a good pace during the study, there is a countdown timer on each screen. Please try to submit
+    your responses each round before the countdown timer reaches "0."</p>
+
+    <p>We will now pause for a few minutes so you can review these formulas and ask questions before we provide examples.</p>
+
+
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

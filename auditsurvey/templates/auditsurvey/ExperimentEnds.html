@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    The Experiment has Finished.
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Thank you for your participation! Please enter the alphanumeric code displayed here in the textbox below.
+    Your fixed and (if applicable) bonus payments will be awarded upon review by experimental staff.
+
+
+    <div>{{ player.participant.code }}</div>
+
+            {% formfield player.puid %}
+
+    </p>
+
+    <t>For additional information on how much was raised for charity in this experiment, please contact jkugel3@gatech.edu</t>
+
+
+{% endblock %}

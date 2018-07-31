@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Confirmation of Experiment Eligibility
+{% endblock %}
+
+{% block content %}
+
+    <p>Before proceeding with the quiz, please confirm the following:
+
+    <div>1. I am 18 years of age or older.</div>
+    <div>2. I am registered and in good standing with Prolific.</div>
+    <div>3. I pledge not to use any outside resources in the course of this study.</div>
+    <div>4. I will complete this study alone and with no assistance from others.</div>
+    <div>5. I am currently residing in and completing this study from The United States of America or a U.S.
+    administered Territory.</div></p>
+
+    <p>To confirm these requirements for study participation, please select the "Next" button below. Otherwise,
+    please DO NOT PROCEED and end your session.</p>
+
+        {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Your Sample Results - Round {{ player.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+{% if player.round_number < Constants.real_game_round %}
+<STRONG STYLE="COLOR: RED;"> THIS IS A PRACTICE ROUND - NO EARNINGS WILL BE AWARDED </STRONG>
+{% endif %}
+
+    <p></p>
+
+    <p style="margin-left: 90px"><b>Here is a summary of your round earnings:</b></p>
+
+    <table class="table table-test" style="width:450px; margin-bottom:15px">
+
+        <tr>
+            <td>The Bill of Lading claimed there were:</td>
+            <td>{{ player.bol }} croissants</td>
+        </tr>
+
+         {% if player.items_sampled > 0 %}
+        <tr>
+            <td>Your sample of {{ player.items_sampled }} estimated:</td>
+            <td>{{player.extrapolated_n_croissants}} croissants</td>
+        </tr>
+        {% else %}
+            {{ pass }}
+        {% endif %}
+        <tr>
+            <td>The true box quantity is:</td>
+            <td>{{ player.croissant }} croissants</td>
+        </tr>
+
+        <tr>
+            <td style="border-top-width:6px">This round's outcome is:</td>
+            <td style="border-top-width:6px">
+                {% if player.accept and player.bol_correct %}
+                    <strong>Correct Agreement</strong>
+                {% elif not player.accept and not player.bol_correct %}
+                    <strong>Correct Disagreement</strong>
+                {% elif not player.accept and player.bol_correct %}
+                    <STRONG STYLE="COLOR: RED;">Incorrect Disagreement</strong>
+                {% else %}
+                    <STRONG STYLE="COLOR: RED;">Incorrect Agreement</strong>
+                {% endif %}</td>
+        </tr>
+
+        <tr>
+            <td style="border-top-width:6px">Your round earnings:</td>
+                {% if player.payoff >= 0 %}
+                    <td style="border-top-width:6px">{{ player.payoff }}</td>
+                {% else %}
+                    <td style="border-top-width:6px"><STRONG STYLE="COLOR: RED;">{{player.payoff}}</STRONG></td>
+                 {% endif %}
+        </tr>
+
+        <tr>
+            <td>Your cumulative earnings:</td>
+                {% if player.participant.payoff > 0 %}
+                    <td>{{ player.participant.payoff }}</td>
+                {% else %}
+                    <td><STRONG STYLE="COLOR: RED;">{{player.participant.payoff}}</STRONG></td>
+                 {% endif %}
+        </tr>
+
+    </table>
+
+
+    <p><i>(Breakdown of Earnings Calculation)</i></p>
+    <p></p>
+    <div>Round Revenue = {{ Constants.round_revenue }}</div>
+    <div>Sample taken = ({{ player.items_sampled }})</div>
+    {% if not player.accept and player.bol_correct %}
+    <div>Improper Rejection Penalty = ({{ Constants.TypeI_Error_Penalty }})</div>
+    {% elif player.accept and not player.bol_correct %}
+    <div>Improper Acceptance Penalty = ({{ player.treatment_penalty }})</div>
+    {% endif %}
+
+    <p></p>
+    {% next_button %}
+{% endblock %}
+
+

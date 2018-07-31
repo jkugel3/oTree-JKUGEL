@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Welcome to the Experiment. Please read the following Consent Form:
+{% endblock %}
+
+{% block content %}
+
+    <p>Thank you for agreeing to participate in this research study! The research is being conducted by Dr. Jason (Xi)
+        Kuang and Jonathan Kugel (both at Georgia Tech). At a minimum, you will be guaranteed the pro-rated, Prolific
+        minimum of $6.50/hour. Additional earnings may be possible based on your actions in the experiment. The study is
+        expected to take 20-30 minutes to complete.</p>
+
+    <p>Approximately 180 participants will complete this study in groups of three or six. <strong> <u>Participants in
+        this study must be > 18 years old, located in the United States, and duly registered and in good standing with
+        the Prolific Platform.</u></strong> Your will confirm your eligibility to participate on the next page.
+        If you do not qualify, you will not be eligible for payment or participation.</p>
+
+    <p>Your participation in this study is completely voluntary. You have the right to change your mind and leave the
+        study at any time without giving any reason and without penalty. You do not waive any of your legal rights by
+        consenting to participate. You will be awarded whatever compensation you have thus far earned at the time of
+        your study termination.</p>
+
+    <p> <strong>This study is being conducted in a double-blind setting: participants are not known to each other or to
+        the experimenters. Your actions and decisions in this study are completely anonymous.</strong> Additionally, the
+        researchers pledge that this study does not involve or utilize deception of any kind.</p>
+
+    <p>No personally identifying information about you will be provided to the experimenters at any time. The results of
+        this research project will be reported only in aggregate form. The data that are collected about you will be
+        kept private to the extent required by law. Study records will be kept confidential to the extent required by law.
+        To make sure that this research is being carried out in the proper way, the Georgia Institute of Technology IRB
+        may review study records. The Office of Human Research Protections may also look at study records.</p>
+
+    <p>You are not likely to benefit in any way from joining this study. We hope to better understand judgments made in
+        the accounting professions. There are no costs to you, other than your time, for being in this study. There are
+        no anticipated risks to your participation in this study other than those ordinarily encountered in day-to-day
+        life.</p>
+
+    <p>Additional questions, complaints, or reports of injury resulting from participation in this experiment should be
+        made to Dr. Jason (Xi) Kuang at Jason.Kuang@Scheller.gatech.edu, or Ms. Melanie Clark, Georgia Institute of
+        Technology, Office of Research Integrity Assurance, at (404) 894-6942.</p>
+
+    <p>Again, thank you for your participation and providing your valuable time!</p>
+
+    <p>Click the "Next" button below to signify that you have read the information contained in this letter and wish
+        to be a participant in this research study. </p>
+
+
+    {% next_button %}
+
+{% endblock %}

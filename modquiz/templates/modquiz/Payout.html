@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Earnings Summary
+{% endblock %}
+
+{% block content %}
+
+    <p>Since you answered {{ questions_correct }} questions correctly, your earnings are ${{ questions_correct }}.00.</p>
+
+    <p></p>
+
+
+    {% next_button %}
+
+{% endblock %}

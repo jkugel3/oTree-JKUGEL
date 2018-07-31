@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Please Read the Following Instructions:
+{% endblock %}
+
+{% block content %}
+
+    <p>This study will consist of two sets of tasks. All participants will complete these same tasks with some
+    variation.<p>
+
+    <p>The first set of tasks is a series of multiple choice trivia questions on North American cuisine. For each
+        correct response, you will earn $1.00. You will have a maximum of 5 minutes to complete this task, as
+        indicated on the timer that will appear in the upper right hand corner of your screen. Once the timer runs
+        out, the trivia task will end regardless of your progress.<p>
+
+    <p>At the conclusion of your trivia task, you will have the opportunity to review a results page indicating your
+        answers, the correct answers, and your earnings from this task.
+
+    <p>Once you are ready to begin the trivia task, please click the "Next" button below:</p>
+
+
+    {% next_button %}
+
+{% endblock %}

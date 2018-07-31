@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <p>Below you will find the results of your quiz. </p>
+
+    <p>
+        You answered {{ questions_correct2 }} out of {{ Constants.num_rounds }}
+        questions correctly.
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>Question</th>
+            <th>Your answer</th>
+            <th>Correct answer</th>
+        </tr>
+        {% for p in player_in_all_rounds %}
+            <tr>
+                <td>{{ p.question }}</td>
+                <td>{{ p.submitted_answer }}</td>
+                <td>{{ p.solution }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <P>You have finished the task! Please wait for additional instructions from the experimenter. You will review
+    your current earnings on the next screen.</P>
+
+    {% next_button %}
+{% endblock %}
+
+

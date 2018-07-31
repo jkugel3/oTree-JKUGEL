@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    The Experiment - Taking a Sample:
+{% endblock %}
+
+{% block content %}
+
+    <p>At the end of each day/round, you will learn whether your sample led to the correct decision. You will get a
+        report that tells you whether the decision to agree or disagree (as determined by your sample results), is
+        either a:.<P>
+
+    <div>1. Correct agreement. This occurs when your sample results lead you to accept an accurate shipment.</div>
+    <div>2. Wrong agreement. This occurs when your sample results lead you to accept an incorrect shipment.</div>
+    <div>3. Correct disagreement. This occurs when your sample results lead you to reject an incorrect shipment.</div>
+    <div>4. Wrong disagreement. This occurs when your sample results lead you to reject an accurate shipment.</div>
+
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

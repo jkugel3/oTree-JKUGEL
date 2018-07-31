@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Earnings Computation:
+{% endblock %}
+
+{% block content %}
+
+    <p></p>
+    {% if session.config.treatment == 'FX' %}
+    Your supervisor has warned you that If you fail to sample properly and accept a miscounted box, you will forfeit 100
+    dollars of your pay.
+    {% elif ession.config.treatment == 'SM' %}
+    Your supervisor has warned you that If you fail to sample properly and accept a miscounted box, your pay will be
+    reduced by a random amount between 0 and 200 dollars, with an equal chance of any value within that range.
+    Although the penalty for each wrong agreement is randomly determined, the expected value of the penalty is 100 dollars.
+    {% else %}
+    The Café’s owner has a notorious reputation as a perfectionist with a bad temper. While the owner is rarely on-site,
+    there is a small (2%) chance that if the owner is around and finds out you accepted a miscounted box, you will lose
+    your fall employment with the Café and 4,750 dollars of related pay. There is a much higher chance (98%) that only
+    your manager will find out you accepted a miscounted box and deduct 5 dollars from your pay. Although the penalty
+    for each wrong agreement is randomly determined, the expected value of the penalty is 100 dollars.
+    {% endif %}
+    <p></p>
+
+<p>If you incorrectly reject a box where the bill of lading does properly describe the box’s contents,
+the distributor imposes a 5-dollar re-delivery surcharge. Your supervisor has informed you that such a surcharge
+    will be deducted from your pay.</p>
+
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

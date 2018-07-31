@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    The Experiment - Your Summer Job:
+{% endblock %}
+
+{% block content %}
+
+    <p>You just began summer employment at Café Sunshine. In addition to fresh coffee drinks and light lunch fare,
+       the Café is well-known for stocking the delicious baked goods of a local Bakery. Your supervisor has noticed
+       that the shipments of muffins and croissants from the distributor have become very inaccurate, and that
+       recurrent miscounts have caused serious problems for the Café. So you have now been assigned the daily task
+       of taking a sample of each shipment’s goods and ascertaining whether or not the box’s contents properly reflect
+       the bill of lading.<p>
+
+
+    </p>There is an equal chance of any distribution of the two types of baked goods in the box. There is also an equal
+        chance that the bill of lading is correct or incorrect. The cost of muffins and croissants are the same. For the
+        sake of simplicity, you decide to just count the number of croissants in a sample (whereby the number of muffins
+        is automatically determined) and extrapolate the ratio of croissants to muffins to the entire box.<p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Sampling the Daily Shipment - Round {{ player.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+
+{% block content %}
+{% if player.round_number < Constants.real_game_round %}
+<STRONG STYLE="COLOR: RED;"> THIS IS A PRACTICE ROUND - NO EARNINGS WILL BE AWARDED </STRONG>
+{% endif %}
+        <p>The Bill of Lading reports {{ player.bol }} croissants in the box.</p>
+
+    <P></P>
+
+    {% formfield player.items_sampled label="Please enter the number of items you would like to sample." %}
+
+    </div>
+
+    <div><strong><h3 id='instr_toggler'>Show instructions:</h3></strong></div>
+<label class="switch" >
+<input type="checkbox" id='instr_check'  >
+<div class="slider round"></div>
+</label>
+<div id="instructions" class='well well-lg instructions'>
+
+      {% include 'global/text_for_intro_16.html' %}
+</div>
+
+    {% next_button %}
+
+{% endblock %}
+
+
+{% block styles %}
+    <link href="{% static 'test_instrument/css/slider.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'test_instrument/js/slider.js' %}"></script>
+{% endblock %}

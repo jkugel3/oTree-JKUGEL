@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    The Experiment - Taking a Sample:
+{% endblock %}
+
+{% block content %}
+
+    <p>Sampling a portion of the box's goods is your only way of determining whether you will agree or disagree with
+        the bill of lading. For example, if your sample results suggest that the reported count is a correct description
+        of the box, you will automatically agree with the bill of lading and accept the shipment. If, on the other hand,
+        your sample results suggest that the reported count is incorrect, then you will automatically disagree with the
+        bill of lading and reject the shipment. If you decide to sample 0 items from the box, you will automatically
+        agree with the bill of lading and accept the shipment.<P>
+
+    <div></div>
+
+        <P>Your supervisor has advised only to reject a box if the distribution of goods from your sample is more than
+        10 of one item different than the bill of lading. Other employees of the Cafe will verify whether or not you
+        made the right decision as the goods are sold throughout the day.<p>
+
+    {% next_button %}
+
+{% endblock %}

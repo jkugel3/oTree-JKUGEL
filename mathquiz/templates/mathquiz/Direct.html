@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+
+{% block title %}
+    Main Experiment Task
+{% endblock %}
+
+{% block content %}
+
+    {% include 'mathquiz/CommonMath.html'%}
+
+    <p></p>
+
+    {% if player.id_in_group == 1 and player.session.config.treatment == "DG" %}
+
+    <p>For each successfully completed transcription, $0.50 of your earnings from the previous task will be split
+    and transferred equally between two other participants in this study. </p>
+
+    {% elif player.id_in_group == 1 and player.session.config.treatment == "VL" %}
+
+    <p>For each successfully completed transcription, $0.50 will be transferred on your behalf
+    and split equally between two other participants in this study. </p>
+
+    {% elif player.id_in_group == 2 and player.session.config.treatment == "DG" %}
+
+    <p>For each successfully completed transcription problem, $0.50 will be transferred from your earnings to a charity fund.
+    Later in this session, another participant will allocate 100% of the charity fund to a charity vetted as reliable
+    by experts in Not-for-Profit financial management. <p/>
+
+    {% elif player.id_in_group == 2 and player.session.config.treatment == "VL" %}
+
+    <p>For each successfully completed transcription problem, $0.50 will be transferred on your behalf to a charity fund.
+    Later in this session, another participant will allocate 100% of the charity fund to a charity vetted as reliable
+    by experts in Not-for-Profit financial management. <p/>
+
+    {% elif player.id_in_group == 3 and player.session.config.treatment == "DG" %}
+
+    <p>You have been selected to raise funds for a charity of your choice. Please select from one of the organizations
+    below, organized alphabetically. These organizations have all been vetted as reliable by experts in
+    Not-for-Profit financial management:
+
+        {% formfield player.org_choice label="Please Choose An Organization" %}
+
+    <p>For each successfully completed transcription, $0.50 of your earnings from the previous task will be donated
+        to the charity you have chosen above. </p>
+
+    {% elif player.id_in_group == 3 and player.session.config.treatment == "VL" %}
+
+    <p>You have been selected to raise funds for a charity of your choice. Please select from one of the organizations
+    below, organized alphabetically. These organizations have all been vetted as reliable by experts in
+    Not-for-Profit financial management:
+
+        {% formfield player.org_choice label="Please Choose An Organization" %}
+
+    <p>For each successfully completed transcription, $0.50 will be donated on your behalf
+        to the charity you have chosen above. </p>
+
+    {% endif %}
+
+    {% if player.session.config.treatment == "DG" %}
+
+        {% include 'mathquiz/WarnDG.html' %}
+
+    {% elif player.session.config.treatment == "VL" %}
+
+        {% include 'mathquiz/WarnVL.html' %}
+
+    {% endif %}
+
+
+    {% next_button %}
+
+{% endblock %}

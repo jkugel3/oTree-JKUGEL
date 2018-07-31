@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <p>Below you will find the results of your trivia quiz.</p>
+
+    <p>
+        You answered {{ questions_correct }} out of {{ Constants.num_rounds }}
+        questions correctly.
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>Question</th>
+            <th>Your answer</th>
+            <th>Correct answer</th>
+        </tr>
+        {% for p in player_in_all_rounds %}
+            <tr>
+                <td>{{ p.question }}</td>
+                <td>{{ p.submitted_answer }}</td>
+                <td>{{ p.solution }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <P>You have successfully completed the quiz! Please click the "Next" button to view your earnings and
+        proceed with the remainder of the study.</P>
+
+    {% next_button %}
+{% endblock %}
+
+

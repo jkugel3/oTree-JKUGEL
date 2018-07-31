@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    <strong>Welcome Screen</strong>
+{% endblock %}
+
+{% block content %}
+
+    <p>Please wait to click the "Next" button until instructed to do so by the experimenter.</p>
+
+        {% next_button %}
+
+{% endblock %}

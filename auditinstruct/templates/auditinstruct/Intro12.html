@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Examples of Net Earnings Calculation:
+{% endblock %}
+
+{% block content %}
+
+    <p><strong><i>(The following examples illustrate the net earnings computation. Because the examples merely illustrate the earnings
+        computation, you should not view the hypothetical actions as indicative of the best thing for you to do.)</i></strong></p>
+
+    <div>Example 2:</div>
+    <p></p>
+
+    <p>Suppose the true quantity of goods is 59 croissants and 41 muffins, as in example 1, but the bill of lading
+    reports an inflated count of 79 croissants. Suppose also that you decide to sample 15 items of which 8 are
+    croissants, so the sample's estimate is 53 croissants and 47 muffins in the shipment. In this case, because
+    the count of 79 croissants is outside the previously described range of 43-63 croissants, the shipment is
+    automatically rejected. Because your sampling results lead you to reject an incorrect shipment, your earnings
+    computation for this round will again be 50 (revenue) – 15 (sampling cost) = 35 dollars, as in example 1.</p>
+
+
+    <p></p>
+    {% next_button %}
+
+{% endblock %}

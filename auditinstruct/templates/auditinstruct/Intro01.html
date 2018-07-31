@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Welcome to the Experiment. Please read the following Consent Form:
+{% endblock %}
+
+{% block content %}
+
+    <p>Thank you for agreeing to participate in this research study! The research is being conducted by Dr. Jason (Xi)
+        Kuang and Jonathan Kugel (both at Georgia Tech). You will be compensated $10 for your time, between $1 and $10
+        in additional compensation for your relative efforts in the experiment, and the study is expected to take 45-60
+        minutes to complete.<p>
+
+    <p>Approximately 120 students will participate in the study in sessions of ten participants. Participants in this
+        study must be > 18 years old, native English speakers, and registered for the current Summer 2017 session or
+        for the Fall 2017 semester. Your responses to several survey questions will determine your eligibility to
+        participate in the study. If you do not qualify, you will not be eligible for payment or participation.</p>
+
+    <p> <strong>In this study, you will assume the role of a cafe worker tasked with validating a daily baked goods shipment.
+        We are interested in your responses to the scenario presented. Throughout the study, you will read various
+        materials and respond to a series of questions designed to elicit your assessment of the scenario(s). There is
+        no right or wrong way to complete the assigned tasks. We are just interested in your judgment. </strong></p>
+
+    <p>Your participation in this study is completely voluntary. You have the right to change your mind and leave the
+        study at any time without giving any reason and without penalty. You do not waive any of your legal rights by
+        consenting to participate.</p>
+
+    <p>All individual responses will be kept completely anonymous and the results of this research project will be
+        reported only in aggregate form. The data that are collected about you will be kept private to the extent
+        required by law. Study records will be kept confidential to the extent required by law. To make sure that this
+        research is being carried out in the proper way, the Georgia Institute of Technology IRB may review study
+        records. The Office of Human Research Protections may also look at study records.</p>
+
+    <p>You are not likely to benefit in any way from joining this study. We hope to better understand judgments made
+        in the accounting and audit professions. There are no costs to you, other than your time, for being in this
+        study. There are no anticipated risks to your participation in this study other than those ordinarily
+        encountered in day-to-day life.</p>
+
+    <p>Additional questions, complaints, or reports of injury resulting from participation in this experiment should be
+        made to Dr. Jason (Xi) Kuang at Jason.Kuang@Scheller.gatech.edu, or Ms. Melanie Clark, Georgia Institute of
+        Technology, Office of Research Integrity Assurance, at (404) 894-6942.</p>
+
+    <p>Again, thank you for your participation and providing your valuable time!</p>
+
+    <p>Click the "Next" button below to signify that you have read the information contained in this letter and wish
+        to be a volunteer in this research study. </p>
+
+
+    {% next_button %}
+
+{% endblock %}
