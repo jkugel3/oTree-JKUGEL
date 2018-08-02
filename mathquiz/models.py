@@ -91,7 +91,11 @@ class Player(BasePlayer):
         treatment_type = [self.dual_giver, self.volunteer]
         treatment_index = Constants.treatments.index(self.session.config['treatment'])
         self.treatment_type = treatment_type[treatment_index]()
-        p1.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) + p1.self.amount_sent()
-        p2.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
-        p3.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
-
+        if self.treatment_type == 'VL':
+            p1.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) + p1.self.amount_sent()
+            p2.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
+            p3.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
+        elif self.treatment_type == "DG":
+            p1.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) + p1.self.amount_sent() - p1.self.dual_giver
+            p2.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
+            p3.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
