@@ -4,7 +4,7 @@ from os import environ
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
 # e.g. self.session.config['participation_fee']
-EXTENSION_APPS = ['otree_tools']
+#EXTENSION_APPS = ['otree_tools']
 mturk_hit_settings = {
     'keywords': ['bonus', 'study'],
     'title': 'Title for your experiment',
@@ -99,5 +99,5 @@ SECRET_KEY = 'foijz^)$ba=$*5uyed+y35cm%yags#u91)*$%&!!e5*1r_^3ha'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree',
-                  'otree_tools'
+                #  'otree_tools'
                   ]
