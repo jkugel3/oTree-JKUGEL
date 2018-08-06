@@ -11,6 +11,8 @@
 
     {% formfield player.submitted_answer label=player.question %}
 
+    <p>Your earnings are {{ participant.payoff }}</p>
+
     {% next_button %}
 
 {% endblock %}

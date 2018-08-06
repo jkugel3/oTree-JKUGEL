@@ -43,18 +43,9 @@ class Subsession(BaseSubsession):
             p.question = question_data['question']
             p.solution = question_data['solution']
 
-
 class Group(BaseGroup):
 
-    amount_sent = models.CurrencyField(
-        max=c(0)
-    )
-    charity_fund = models.CurrencyField(
-        min=c(0)
-    )
-    direct_donation = models.CurrencyField(
-        min=c(0)
-    )
+    pass
 
 class Player(BasePlayer):
     question_id = models.PositiveIntegerField()
@@ -62,15 +53,8 @@ class Player(BasePlayer):
     solution = models.StringField()
     submitted_answer = models.StringField(blank=True)
     is_correct = models.BooleanField()
+    total_correct = models.CurrencyField()
     org_choice = models.StringField(choices=Constants.orgs,blank=True)
-
-    def role(self):
-        if self.id_in_group == 1:
-            return 'dictator'
-        elif self.id_in_group == 2:
-            return 'charity_fund'
-        elif self.id_in_group ==3:
-            return 'direct'
 
     def current_question(self):
         return self.session.vars['questions2'][self.round_number - 1]
@@ -78,24 +62,21 @@ class Player(BasePlayer):
     def check_correct(self):
         self.is_correct = self.submitted_answer == self.solution
 
-    def dual_giver(self):
-        return self.is_correct * Constants.right_answer
+    def total(self):
+        if self.is_correct == 1:
+            self.total_correct =+ Constants.right_answer
+        return self.total_correct
 
     def volunteer(self):
         return c(0)
-
+    
     def set_payoffs(self):
-        p1 = self.get_player_by_id(1)
-        p2 = self.get_player_by_id(2)
-        p3 = self.get_player_by_id(3)
-        treatment_type = [self.dual_giver, self.volunteer]
+        p1 = self.id_in_group == 1
+        p2 = self.id_in_group == 2
+        p3 = self.id_in_group == 3
+        treatment_type = [self.total, self.volunteer]
         treatment_index = Constants.treatments.index(self.session.config['treatment'])
         self.treatment_type = treatment_type[treatment_index]()
-        if self.treatment_type == 'VL':
-            p1.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) + p1.self.amount_sent()
-            p2.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
-            p3.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
-        elif self.treatment_type == "DG":
-            p1.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) + p1.self.amount_sent() - p1.self.dual_giver
-            p2.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
-            p3.payoff = sum([p.payoff for p in self.player.in_all_rounds()]) - (p1.self.amount_sent() / 2)
+        p1.payoff = sum([p1.payoff for p1 in self.in_all_rounds()]) - self.treatment_type
+        p2.payoff = sum([p2.payoff for p2 in self.in_all_rounds()]) + (p1.self.total_correct/2) - self.treatment_type
+        p3.payoff = sum([p3.payoff for p3 in self.in_all_rounds()]) + (p1.self.total_correct/2) - self.treatment_type

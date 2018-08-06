@@ -27,6 +27,8 @@ class EndPage(Page):
 
 class Wait(WaitPage):
 
+    group_by_arrival_time = True
+
     def is_displayed(self):
         return self.round_number == 1
 
@@ -52,9 +54,14 @@ class Question(Page):
             'transcribe':'mathquiz/{}.JPG'.format(self.round_number)
         }
 
+    def before_next_page(self):
+        self.player.check_correct()
+        self.player.total()
+
 class Results(EndPage):
 
-    pass
+    def before_next_page(self):
+        self.player.set_payoffs()
 
 class Payout(EndPage):
 

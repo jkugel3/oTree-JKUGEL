@@ -8,6 +8,7 @@ class BasePage(Page):
     def is_displayed(self):
         return self.round_number == 1
 
+
 class Begin(BasePage):
 
     pass
@@ -15,6 +16,7 @@ class Begin(BasePage):
 class ConForm(BasePage):
 
     pass
+
 
 class Confirmation(BasePage):
 
