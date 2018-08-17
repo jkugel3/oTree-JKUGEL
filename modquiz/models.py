@@ -24,7 +24,7 @@ class Constants(BaseConstants):
 
     num_rounds = len(questions)
 
-    right_answer = c(0.5)
+    right_answer = c(0.25)
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -53,7 +53,6 @@ class Player(BasePlayer):
         return self.session.vars['questions'][self.round_number - 1]
 
     def check_correct(self):
-
         self.is_correct = self.submitted_answer == self.solution
         if self.is_correct == 1:
             self.total_correct =+ Constants.right_answer

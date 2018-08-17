@@ -25,7 +25,7 @@ class EndPage(Page):
             'questions_correct2': sum([p.is_correct for p in player_in_all_rounds]),
         }
 
-class Wait(WaitPage):
+class Wait1(WaitPage):
 
     group_by_arrival_time = True
 
@@ -43,6 +43,7 @@ class Question(Page):
 
     def before_next_page(self):
         self.player.check_correct()
+        self.player.set_payoffs()
 
     timer_text = 'Time left to complete this section:'
 
@@ -54,21 +55,19 @@ class Question(Page):
             'transcribe':'mathquiz/{}.JPG'.format(self.round_number)
         }
 
-    def before_next_page(self):
-        self.player.check_correct()
-        self.player.total()
+
 
 class Results(EndPage):
 
     def before_next_page(self):
-        self.player.set_payoffs()
+        self.player.fix_payment()
 
 class Payout(EndPage):
 
-   pass
+    pass
 
 page_sequence = [
-    Wait,
+    Wait1,
     Direct,
     Question,
     Results,

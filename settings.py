@@ -54,12 +54,18 @@ SESSION_CONFIGS = [
      'num_demo_participants': 1,
      'app_sequence': ['modquiz'],
      },
-    {'name': 'mathquiz',
+    {'name': 'entire_exp',
      'display_name': "Charity Math Task",
      'num_demo_participants': 3,
      'app_sequence': ['mathquiz'],
      'treatment': 'DG',
-     }
+     },
+    {'name': 'mathquiz',
+     'display_name': "Decoding Task Only",
+     'num_demo_participants': 3,
+     'app_sequence': ['mathquiz'],
+     'treatment': 'DG',
+     },
 ]
 
 # ISO-639 code

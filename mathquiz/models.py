@@ -23,7 +23,7 @@ class Constants(BaseConstants):
 
     num_rounds = len(questions2)
 
-    right_answer = c(0.5)
+    right_answer = c(0.25)
 
     orgs = ["Hunger Project","Mental Health America","National Military Family Association",\
             "Ronald McDonald House","Wildlife Conservation Society"]
@@ -53,6 +53,10 @@ class Player(BasePlayer):
     solution = models.StringField()
     submitted_answer = models.StringField(blank=True)
     is_correct = models.BooleanField()
+    dictator = models.CurrencyField()
+    sent_amount = models.CurrencyField()
+    charity_fund = models.CurrencyField()
+    direct_donation = models.CurrencyField()
     total_correct = models.CurrencyField()
     org_choice = models.StringField(choices=Constants.orgs,blank=True)
 
@@ -60,23 +64,47 @@ class Player(BasePlayer):
         return self.session.vars['questions2'][self.round_number - 1]
 
     def check_correct(self):
+
         self.is_correct = self.submitted_answer == self.solution
+        if self.session.config == 'VL' or self.is_correct==1:
+            if self.id_in_group==1:
+                self.dictator =+ Constants.right_answer
+            elif self.id_in_group==2:
+                self.charity_fund =+ Constants.right_answer
+            elif self.id_in_group==3:
+                self.direct_donation =+ Constants.right_answer
+        elif self.session.config == 'DG' or self.is_correct == 1:
+            if self.id_in_group==1:
+                self.dictator =- Constants.right_answer
+            elif self.id_in_group==2:
+                self.charity_fund =- Constants.right_answer
+            elif self.id_in_group==3:
+                self.direct_donation =- Constants.right_answer
+        else:
+            pass
+        return self.dictator or self.charity_fund or self.direct_donation
 
-    def total(self):
-        if self.is_correct == 1:
-            self.total_correct =+ Constants.right_answer
-        return self.total_correct
+    def sent_money(self):
+        self.sent_amount = abs(self.dictator) * c(0.5)
+        return self.sent_amount
 
-    def volunteer(self):
-        return c(0)
-    
     def set_payoffs(self):
-        p1 = self.id_in_group == 1
-        p2 = self.id_in_group == 2
-        p3 = self.id_in_group == 3
-        treatment_type = [self.total, self.volunteer]
-        treatment_index = Constants.treatments.index(self.session.config['treatment'])
-        self.treatment_type = treatment_type[treatment_index]()
-        p1.payoff = sum([p1.payoff for p1 in self.in_all_rounds()]) - self.treatment_type
-        p2.payoff = sum([p2.payoff for p2 in self.in_all_rounds()]) + (p1.self.total_correct/2) - self.treatment_type
-        p3.payoff = sum([p3.payoff for p3 in self.in_all_rounds()]) + (p1.self.total_correct/2) - self.treatment_type
+        if self.session.config == 'DG':
+            if self.id_in_group == 1:
+                self.payoff = self.dictator
+            elif self.id_in_group == 2:
+                self.payoff = self.charity_fund + self.sent_amount
+            else:
+                self.payoff = self.direct_donation + self.sent_amount
+        else:
+            if self.id_in_group == 2:
+                self.payoff = self.sent_amount
+            elif self.id_in_group == 3:
+                self.payoff = self.sent_amount
+
+
+    def fix_payment(self):
+        if self.payoff < 2.00:
+            self.payoff == 2.00
+        else:
+            pass
