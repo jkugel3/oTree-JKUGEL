@@ -23,7 +23,7 @@
         {% for p in player_in_all_rounds %}
             <tr>
                 <td>{{ p.question }}</td>
-                <td>{{ p.submitted_answer }}</td>
+                <td>{{ p.submitted_answer|default_if_none:'' }}</td>
                 <td>{{ p.solution }}</td>
             </tr>
         {% endfor %}

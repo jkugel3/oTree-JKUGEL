@@ -4,17 +4,17 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 import time
 
-class BasePage(Page):
 
+class BasePage(Page):
     def is_displayed(self):
         return self.round_number == 1
 
     def before_next_page(self):
         # user has 5 minutes to complete as many pages as possible
-        self.participant.vars['expiry'] = time.time() + (5*60)
+        self.participant.vars['expiry'] = time.time() + (5 * 60)
+
 
 class EndPage(Page):
-
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
@@ -25,17 +25,19 @@ class EndPage(Page):
             'questions_correct2': sum([p.is_correct for p in player_in_all_rounds]),
         }
 
-class Wait1(WaitPage):
 
+class Wait1(WaitPage):
     group_by_arrival_time = True
 
     def is_displayed(self):
         return self.round_number == 1
 
-class Direct(BasePage):
 
-    form_model = 'player'
+class Direct(BasePage):
+    form_model = 'group'
     form_fields = ['org_choice']
+
+
 
 class Question(Page):
     form_model = 'player'
@@ -43,7 +45,6 @@ class Question(Page):
 
     def before_next_page(self):
         self.player.check_correct()
-        self.player.set_payoffs()
 
     timer_text = 'Time left to complete this section:'
 
@@ -52,24 +53,37 @@ class Question(Page):
 
     def vars_for_template(self):
         return {
-            'transcribe':'mathquiz/{}.JPG'.format(self.round_number)
+            'transcribe': 'mathquiz/{}.JPG'.format(self.round_number)
         }
 
+    def is_displayed(self):
+        if self.round_number == 1:
+            return self.participant.vars['total_modquiz_questions_correct'] > 0
+        num_previous_correct = sum([p.is_correct for p in self.player.in_previous_rounds()])
+        return num_previous_correct < self.participant.vars['total_modquiz_questions_correct']
+
+
+class BeforeResultsWP(WaitPage):
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+    def after_all_players_arrive(self):
+        self.group.set_payoffs()
 
 
 class Results(EndPage):
+    ...
 
-    def before_next_page(self):
-        self.player.fix_payment()
 
 class Payout(EndPage):
-
     pass
+
 
 page_sequence = [
     Wait1,
     Direct,
     Question,
+    BeforeResultsWP,
     Results,
     Payout,
 ]
