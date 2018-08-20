@@ -60,6 +60,12 @@ class Earnings(Page):
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
+    def before_next_page(self):
+        # PH: not a perfect solution because if you decide one day NOT to show them final earnings in the end of
+        # Stage 1, the total payoffs will never be stored in participant.vars, and thus never passed to App2
+        player_in_all_rounds = self.player.in_all_rounds()
+        self.participant.vars['total_modquiz_questions_correct'] = sum([p.is_correct for p in player_in_all_rounds])
+        self.participant.vars['modquiz_earnings'] = self.participant.vars['total_modquiz_questions_correct'] * Constants.right_answer
 
 page_sequence = [
     Begin,
